@@ -6,6 +6,7 @@ def spielfeldAusgeben(Spielfeld):
         print()
     time.sleep(1)  
     print()
+
 def zähle_die_nachbarn(Spielfeld, zeile, spalte):
     anzahl = 0
     if spalte + 1 < len(Spielfeld[zeile]):
@@ -29,6 +30,13 @@ def zähle_die_nachbarn(Spielfeld, zeile, spalte):
     #print('Lebende nachbarn von [' + str(zeile) + ',' + str(spalte) + ']:' + str(anzahl))
     return anzahl
 
+def nochEtwasLebtIm(Spielfeld):
+    for zeile in Spielfeld:
+        for zelle in zeile:
+            if zelle == 1:
+                return True
+    # Alles tot!
+    return False
 
 # Unsere hauptfunktion
 def main():
@@ -39,35 +47,34 @@ def main():
         [1, 1, 1, 0, 0],
         [0, 1, 1, 1, 0],
         ]
-    Folgegeneration = [
-        [0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0],
-        ]
     spielfeldAusgeben(Spielfeld)
 
-    for zeile in range(len(Spielfeld)):
-        for spalte in range(len(Spielfeld[zeile])):
-            anzahl = zähle_die_nachbarn(Spielfeld, zeile, spalte)
-            if anzahl == 3:
-                Folgegeneration[zeile][spalte] = 1
-            if anzahl < 2:
-                Folgegeneration[zeile][spalte] = 0
-            if Spielfeld[zeile][spalte] == 1:
-                if anzahl == 3 or anzahl == 2:
+    # Dies wiederholen:
+    while nochEtwasLebtIm(Spielfeld):
+        Folgegeneration = [
+            [0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0],
+            ]
+
+        for zeile in range(len(Spielfeld)):
+            for spalte in range(len(Spielfeld[zeile])):
+                anzahl = zähle_die_nachbarn(Spielfeld, zeile, spalte)
+                if anzahl == 3:
                     Folgegeneration[zeile][spalte] = 1
-                if anzahl > 3:
+                if anzahl < 2:
                     Folgegeneration[zeile][spalte] = 0
+                if Spielfeld[zeile][spalte] == 1:
+                    if anzahl == 3 or anzahl == 2:
+                        Folgegeneration[zeile][spalte] = 1
+                    if anzahl > 3:
+                        Folgegeneration[zeile][spalte] = 0
 
-    spielfeldAusgeben(Folgegeneration)
-
-
-
-
-
-
+        spielfeldAusgeben(Folgegeneration)
+        Spielfeld = Folgegeneration
+    # bis hierher
 
 if __name__ == '__main__':
     main()
