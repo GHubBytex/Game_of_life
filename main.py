@@ -6,10 +6,10 @@ def spielfeldAusgeben(Spielfeld):
         for Zelle in Zeile:
             if Zelle == 0:
                 print(" ", end=' ')
-            else: 
+            else:
                 print("O", end=' ')
         print()
-    time.sleep(0.2)
+    time.sleep(0.4)
     print()
 
 def zähle_die_nachbarn(Spielfeld, zeile, spalte):
@@ -31,8 +31,6 @@ def zähle_die_nachbarn(Spielfeld, zeile, spalte):
     if spalte + 1 < len(Spielfeld[zeile]) and zeile - 1 >= 0:
         anzahl = anzahl + Spielfeld[zeile - 1][spalte + 1]
 
-
-    #print('Lebende nachbarn von [' + str(zeile) + ',' + str(spalte) + ']:' + str(anzahl))
     return anzahl
 
 def nochEtwasLebtIm(Spielfeld):
@@ -45,28 +43,31 @@ def nochEtwasLebtIm(Spielfeld):
 
 # Unsere hauptfunktion
 def main():
-    print('Number of arguments: ' + str(len(sys.argv)) + ' arguments.')
-    print('Argument List:' + str(sys.argv))
-    time.sleep(0.6)
-    print("*********************")
-    print("Spiel startet in 3 Sekunden!")
-    time.sleep(1)
+    time.sleep(0.4)
+    print("****************************")
+    print("Spiel startet in 2 Sekunden!")
     print("Bitte Warten")
-    time.sleep(3)
+    time.sleep(2)
+    print("****************************")
 
-    Spielfeld = [[0 for i in range(50)] for j in range(50)]
+    anzahl_lebendig_zellen = int(input("Wie viele Zellen sollen lebendig sein? "))
 
+    größe = int(input("Wie groß soll das Spielfeld sein? "))
 
-    for zeile in range(len(Spielfeld)):
-        for spalte in range(len(Spielfeld[zeile])):
-            x = random.randint(0,1)
-            Spielfeld[zeile][spalte] = x
+    Spielfeld = [[0 for i in range(größe)] for j in range(größe)]
+
+    i = 0
+    while i < anzahl_lebendig_zellen:
+        i += 1
+        zeile = random.randint(0,größe - 1)
+        spalte = random.randint(0,größe - 1)
+        Spielfeld[zeile][spalte] = 1
 
     spielfeldAusgeben(Spielfeld)
 
     # Dies wiederholen:
     while nochEtwasLebtIm(Spielfeld):
-        Folgegeneration = [[0 for i in range(50)] for j in range(50)]
+        Folgegeneration = [[0 for i in range(größe)] for j in range(größe)]
 
         for zeile in range(len(Spielfeld)):
             for spalte in range(len(Spielfeld[zeile])):
@@ -87,12 +88,3 @@ def main():
 
 if __name__ == '__main__':
     main()
-
-
-
-
-
-117
-53
-
-
