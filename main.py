@@ -1,12 +1,12 @@
 import time
 def spielfeldAusgeben(Spielfeld):
     for Zeile in Spielfeld:
-        # Zeile ausgeben
         for Zelle in Zeile:
-            print(Zelle, end=' ')
+            if Zelle == 0:
+                print(" ", end=' ')
+            else: 
+                print("O", end=' ')
         print()
-        #Zeile ist zu Ende
-        
     time.sleep(1)  
     print()
 
@@ -44,11 +44,7 @@ def nochEtwasLebtIm(Spielfeld):
 # Unsere hauptfunktion
 def main():
     Spielfeld = [
-
-
         [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-
-
         [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
         [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
         [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
