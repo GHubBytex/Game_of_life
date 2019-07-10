@@ -85,10 +85,11 @@ def main():
 def Zufallsgenerator(Spielfeld, anzahl_lebendig_zellen, größe):
     i = 0
     while i < anzahl_lebendig_zellen:
-        i += 1
         zeile = random.randint(0,größe - 1)
         spalte = random.randint(0,größe - 1)
-        Spielfeld[zeile][spalte] = 1
+        if Spielfeld[zeile][spalte] == 0:
+            i += 1
+            Spielfeld[zeile][spalte] = 1
 
 if __name__ == '__main__':
     main()
