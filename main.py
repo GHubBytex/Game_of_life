@@ -8,9 +8,9 @@ def spielfeldAusgeben(Spielfeld):
             if Zelle == 0:
                 print(" ", end=' ')
             else:
-                print("O", end=' ')
+                print("*", end=' ')
         print()
-    time.sleep(0.4)
+    time.sleep(0.6)
     print()
 
 def zähle_die_nachbarn(Spielfeld, zeile, spalte):
