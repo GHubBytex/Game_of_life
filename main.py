@@ -1,6 +1,7 @@
 import time
 import random
 import sys
+
 def spielfeldAusgeben(Spielfeld):
     for Zeile in Spielfeld:
         for Zelle in Zeile:
@@ -56,12 +57,7 @@ def main():
 
     Spielfeld = [[0 for i in range(größe)] for j in range(größe)]
 
-    i = 0
-    while i < anzahl_lebendig_zellen:
-        i += 1
-        zeile = random.randint(0,größe - 1)
-        spalte = random.randint(0,größe - 1)
-        Spielfeld[zeile][spalte] = 1
+    Zufallsgenerator(Spielfeld, anzahl_lebendig_zellen, größe)
 
     spielfeldAusgeben(Spielfeld)
 
@@ -85,6 +81,14 @@ def main():
         spielfeldAusgeben(Folgegeneration)
         Spielfeld = Folgegeneration
     # bis hierher
+
+def Zufallsgenerator(Spielfeld, anzahl_lebendig_zellen, größe):
+    i = 0
+    while i < anzahl_lebendig_zellen:
+        i += 1
+        zeile = random.randint(0,größe - 1)
+        spalte = random.randint(0,größe - 1)
+        Spielfeld[zeile][spalte] = 1
 
 if __name__ == '__main__':
     main()
