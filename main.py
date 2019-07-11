@@ -52,8 +52,14 @@ def main():
     print("****************************")
 
     anzahl_lebendig_zellen = int(input("Wie viele Zellen sollen lebendig sein? "))
-
     größe = int(input("Wie groß soll das Spielfeld sein? "))
+
+    größe_im_quadrat = größe * größe
+    if größe_im_quadrat <= anzahl_lebendig_zellen:
+        Fehlermeldung_zu_viel_Zellen()
+        exit()
+
+
 
     Spielfeld = [[0 for i in range(größe)] for j in range(größe)]
 
@@ -61,7 +67,6 @@ def main():
 
     spielfeldAusgeben(Spielfeld)
 
-    # Dies wiederholen:
     while nochEtwasLebtIm(Spielfeld):
         Folgegeneration = [[0 for i in range(größe)] for j in range(größe)]
 
@@ -90,6 +95,12 @@ def Zufallsgenerator(Spielfeld, anzahl_lebendig_zellen, größe):
         if Spielfeld[zeile][spalte] == 0:
             i += 1
             Spielfeld[zeile][spalte] = 1
+
+def Fehlermeldung_zu_viel_Zellen():
+    print("Sie haben zu viele lebende Zellen! ")
+    print("Spiel schließt")
+
+
 
 if __name__ == '__main__':
     main()
